@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/baby_bottle"
+        android:title="Bottle"
+        android:icon="@drawable/ic_bottle"
+        />
+    <item
+        android:id="@+id/baby_sleep"
+        android:title="Sleep"
+        android:icon="@drawable/ic_sleep"
+        />
+<item
+        android:id="@+id/baby_bath"
+        android:title="Bath"
+        android:icon="@drawable/ic_bath"
+        />
+<item
+        android:id="@+id/baby_feed"
+        android:title="Solids"
+        android:icon="@drawable/ic_feed"
+        />
+<item
+        android:id="@+id/baby_medicine"
+        android:title="Medicine"
+        android:icon="@drawable/ic_medicine"
+        />
+<item
+        android:id="@+id/nappy"
+        android:title="Diaper"
+        android:icon="@drawable/ic_nappy"
+        />
+<item
+        android:id="@+id/pee"
+        android:title="Pee"
+        android:icon="@drawable/ic_pee"
+        />
+ <item
+        android:id="@+id/height"
+        android:title="Height"
+        android:icon="@drawable/ic_hight"
+        />
+ <item
+        android:id="@+id/temp"
+        android:title="Temp"
+        android:icon="@drawable/ic_temp"
+        />
+ <item
+        android:id="@+id/baby_vaccine"
+        android:title="Vaccine"
+        android:icon="@drawable/ic_vaccin"
+        />
+ <item
+        android:id="@+id/weight"
+        android:title="Weight"
+        android:icon="@drawable/ic_weight"
+        />
+
+</menu>
