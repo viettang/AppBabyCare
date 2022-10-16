@@ -1,34 +1,24 @@
 package com.viel.babycare
 
-import android.app.Activity
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.viel.babycare.adapter.BabyPagerAdapter
+import com.viel.babycare.adapter.DialogActionAdapter
 import com.viel.babycare.databinding.ActivityMainBinding
 import com.viel.babycare.dialog.*
+import com.viel.babycare.fragments.HomeFragment
 
-class MainActivity : AppCompatActivity() {
+
+open class MainActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityMainBinding
-    val bDialog:BottleDialog = BottleDialog()
-    val sDialog:SleepDialog = SleepDialog()
-    val baDialog:BathDialog = BathDialog()
-    val pDialog:PeeDialog = PeeDialog()
-    val slDialog:SolidsDialog = SolidsDialog()
-    val mDialog:MedicineDialog = MedicineDialog()
-    val vDialog:VaccineDialog = VaccineDialog()
-    val dDialog:DiaperDialog = DiaperDialog()
-    val wDialog:WeightDialog = WeightDialog()
-    val hDialog:HeightDialog = HeightDialog()
-    val tDialog:TempDialog = TempDialog()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,24 +43,27 @@ class MainActivity : AppCompatActivity() {
            }
         }
 
+
         binding.navMain.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.baby_bottle -> bDialog.bottleDialog(this)
-                R.id.baby_sleep -> sDialog.sleepDialog(this)
-                R.id.baby_bath -> baDialog.bathDialog(this)
-                R.id.pee -> pDialog.peeDialog(this)
-                R.id.baby_feed -> slDialog.solidsDialog(this)
-                R.id.baby_medicine -> mDialog.medicineDialog(this)
-                R.id.baby_vaccine -> vDialog.vaccineDialog(this)
-                R.id.nappy -> dDialog.diaperDialog(this)
-                R.id.weight -> wDialog.weightDialog(this)
-                R.id.height -> hDialog.heightDialog(this)
-                R.id.temp -> tDialog.tempDialog(this)
+                R.id.baby_bottle -> BottleDialog.bottleDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.baby_sleep -> SleepDialog.sleepDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.baby_bath -> BathDialog.bathDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.pee -> PeeDialog.peeDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.baby_feed -> SolidsDialog.solidsDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.baby_medicine -> MedicineDialog.medicineDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.baby_vaccine ->  VaccineDialog.vaccineDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.nappy -> DiaperDialog.diaperDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.weight -> WeightDialog.weightDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.height -> HeightDialog.heightDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.temp -> TempDialog.tempDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
 
             }
             binding.drawer.closeDrawer(GravityCompat.START)
             true
         }
+
+        DateDialog.dateDialog(this,binding.tvDate)
     }
 
 }

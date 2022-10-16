@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bottles_array">
+        <item>Formula</item>
+        <item>Breast Milk</item>
+        <item>Cow Milk</item>
+        <item>Goat Milk</item>
+        <item>Soy Milk</item>
+        <item>Vinamil</item>
+        <item>Other</item>
+    </string-array>
+</resources>

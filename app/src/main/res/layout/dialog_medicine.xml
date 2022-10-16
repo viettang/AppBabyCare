@@ -65,11 +65,12 @@
         android:layout_marginRight="20dp"
         android:gravity="center"
         android:background="@drawable/spline"
+        android:drawableRight="@drawable/ic_triangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <EditText
-        android:id="@+id/edt_bottle_amount"
+        android:id="@+id/tv_medicine_name"
         android:gravity="center"
         android:layout_width="120dp"
         android:layout_height="30dp"
@@ -80,6 +81,26 @@
         android:background="@drawable/spline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <Button
+        android:id="@+id/btn_medicine_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="60dp"
+        android:text="OK"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <Button
+        android:id="@+id/btn_medicine_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="60dp"
+        android:text="cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
 
     <androidx.constraintlayout.widget.Guideline

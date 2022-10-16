@@ -63,15 +63,36 @@
 
     <EditText
         android:id="@+id/tv_vaccin_name"
-        android:layout_width="400dp"
+        android:layout_width="380dp"
         android:layout_height="60dp"
         android:hint="Vaccin name"
         android:background="@drawable/spline"
         android:gravity="center"
+        android:drawableRight="@drawable/ic_pen"
         android:textSize="20sp"
         android:textStyle="bold"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <Button
+        android:id="@+id/btn_vaccin_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="80dp"
+        android:text="ok"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <Button
+        android:id="@+id/btn_vaccin_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="80dp"
+        android:text="cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 

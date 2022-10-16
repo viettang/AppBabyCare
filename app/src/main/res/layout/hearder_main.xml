@@ -5,13 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/orange">
     <ImageView
+        android:id="@+id/img_baby_care"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/ic_happy"
+        android:background="@drawable/ic_img_header"
+        android:scaleX="0.5"
+        android:scaleY="0.7"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
