@@ -14,11 +14,13 @@ import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
 import com.viel.babycare.databinding.DialogBottleBinding
+import com.viel.babycare.db.DialogManager
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.progress.GetFill
 import com.viel.babycare.progress.GetTime
@@ -31,7 +33,9 @@ object MedicineDialog{
     val gFill:GetFill = GetFill()
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun medicineDialog(mainActivity: MainActivity,arr:ArrayList<DialogAction>,adapter:DialogActionAdapter):Dialog {
+    fun medicineDialog(mainActivity: MainActivity,arr:ArrayList<DialogAction>,adapter:DialogActionAdapter,
+                       dialogManager: DialogManager
+                       ,bin:Boolean,id:Int?):Dialog {
 
         val dialog = Dialog(mainActivity)
 
@@ -56,15 +60,41 @@ object MedicineDialog{
         val tvName = dialog.findViewById(R.id.tv_medicine_name) as TextView
         val btnSave = dialog.findViewById(R.id.btn_medicine_save) as Button
         val btnCancel = dialog.findViewById(R.id.btn_medicine_cancel) as Button
+
+        val btnBin = dialog.findViewById(R.id.img_bin_medicine) as ImageView
+
+        if (bin == true){
+            btnBin.isVisible = true
+            btnBin.setOnClickListener {
+                dialogManager.deleteDialog(id!!)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
+        }else{
+            btnBin.isVisible = false
+        }
         btnSave.setOnClickListener {
-            val dialogAction = DialogAction(R.drawable.medicine,
-                "Medicine",
-                tvTime.text.toString(),
-                tvName.text.toString(),
-                medicineAmount.text.toString())
-            arr.add(dialogAction)
-            adapter.notifyDataSetChanged()
-            dialog.dismiss()
+            val dialogAction = DialogAction(img = R.drawable.medicine,
+                title = "Medicine",
+                time = tvTime.text.toString(),
+                amount = tvName.text.toString(),
+                type = medicineAmount.text.toString(),dayOfWeek = DateDialog.getDayOfWeek(),
+                day = DateDialog.getDate(),
+                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+            if (id == null) {
+                dialogManager.addDialog(dialogAction)
+                arr.add(dialogAction)
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }else{
+                dialogManager.updateDialog(dialogAction,id)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
         }
         btnCancel.setOnClickListener {
             dialog.dismiss()

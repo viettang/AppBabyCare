@@ -14,11 +14,13 @@ import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.DialogFragment
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
 import com.viel.babycare.databinding.DialogBottleBinding
+import com.viel.babycare.db.DialogManager
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.progress.GetFillDoc
 import com.viel.babycare.progress.GetTime
@@ -31,7 +33,8 @@ object BottleDialog{
     val gFillDoc:GetFillDoc = GetFillDoc()
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun bottleDialog(mainActivity: MainActivity,arr:ArrayList<DialogAction>,adapter:DialogActionAdapter):Dialog{
+    fun bottleDialog(mainActivity: MainActivity,arr:ArrayList<DialogAction>,adapter:DialogActionAdapter
+                     ,dialogManager: DialogManager,bin:Boolean,id:Int?):Dialog{
 
         val dialog = Dialog(mainActivity)
 
@@ -54,7 +57,6 @@ object BottleDialog{
                 adapter -> adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = adapter
         }
-        val type = spinner.selectedItem.toString()
 
         timeCurrent.setOnClickListener {
             gTime.getTime(mainActivity,timeCurrent)
@@ -64,15 +66,41 @@ object BottleDialog{
         val tvAmount = dialog.findViewById(R.id.tv_bottle_amount) as TextView
         val btnSave = dialog.findViewById(R.id.btn_bottle_save) as Button
         val btnCancel = dialog.findViewById(R.id.btn_bottle_cacel) as Button
+
+        val btnBin = dialog.findViewById(R.id.img_bin_bottle) as ImageView
+
+        if (bin == true){
+            btnBin.isVisible = true
+            btnBin.setOnClickListener {
+                dialogManager.deleteDialog(id!!)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
+        }else{
+            btnBin.isVisible = false
+        }
         btnSave.setOnClickListener {
-            val dialogAction = DialogAction(R.drawable.baby_bottle,
-                "Milk Botle",
-                tvTime.text.toString(),
-                tvAmount.text.toString(),
-                type)
-            arr.add(dialogAction)
-            adapter.notifyDataSetChanged()
-            dialog.dismiss()
+            val type = spinner.selectedItem.toString()
+            val dialogAction = DialogAction(img = R.drawable.baby_bottle,
+                title = "Milk Botle",
+                time = tvTime.text.toString(),
+                amount = tvAmount.text.toString(),
+                type = type, dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
+                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+            if (id == null) {
+                dialogManager.addDialog(dialogAction)
+                arr.add(dialogAction)
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }else{
+                dialogManager.updateDialog(dialogAction,id)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
         }
         btnCancel.setOnClickListener {
             dialog.dismiss()

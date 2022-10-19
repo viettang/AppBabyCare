@@ -7,11 +7,14 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.view.Window
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
+import com.viel.babycare.db.DialogManager
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.progress.GetTime
 
@@ -24,8 +27,8 @@ object SleepDialog {
     fun sleepDialog(
         mainActivity: MainActivity,
         arr: ArrayList<DialogAction>,
-        adapter: DialogActionAdapter
-    ): Dialog {
+        adapter: DialogActionAdapter,dialogManager: DialogManager
+        ,bin:Boolean,id:Int?): Dialog {
         val dialog = Dialog(mainActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_sleep)
@@ -45,14 +48,43 @@ object SleepDialog {
         }
         val btnSave = dialog.findViewById(R.id.btn_sleep_ok) as Button
         val btnCancel = dialog.findViewById(R.id.btn_sleep_cancel) as Button
+
+        val btnBin = dialog.findViewById(R.id.img_bin_sleep) as ImageView
+
+        if (bin == true){
+            btnBin.isVisible = true
+            btnBin.setOnClickListener {
+                dialogManager.deleteDialog(id!!)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
+        }else{
+            btnBin.isVisible = false
+        }
         btnSave.setOnClickListener {
-            val dialogAction = DialogAction(R.drawable.baby_sleep,
-                "Sleep",
-                timeCurrentSleep.text.toString(),
-                "Wake up: ${timeCurrentWakeup.text.toString()}",
-                "")
-            arr.add(dialogAction)
-            adapter.notifyDataSetChanged()
+            val dialogAction = DialogAction(img = R.drawable.baby_sleep,
+                title = "Sleep",
+                time = timeCurrentSleep.text.toString(),
+                amount = "Wake up: ${timeCurrentWakeup.text.toString()}",
+                type = "",dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
+                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+            if (id == null) {
+                dialogManager.addDialog(dialogAction)
+                arr.add(dialogAction)
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }else{
+                dialogManager.updateDialog(dialogAction,id)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
+        }
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
         }
         return dialog
     }

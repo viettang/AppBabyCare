@@ -13,8 +13,9 @@
         android:id="@+id/img_pee"
         android:layout_width="wrap_content"
         android:layout_height="130dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/ic_baby_pee"
-        android:layout_marginTop="20dp"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -82,6 +83,18 @@
         android:text="ok"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+    <ImageView
+        android:id="@+id/img_bin_pee"
+        android:visibility="gone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_bin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        />
 
 
     <androidx.constraintlayout.widget.Guideline

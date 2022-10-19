@@ -7,7 +7,8 @@ import com.viel.babycare.databinding.ItemDialogActionBinding
 import com.viel.babycare.model.DialogAction
 
 class DialogActionAdapter (
-    private val dialogActions:List<DialogAction>
+    private val dialogActions:List<DialogAction>,
+    private val callback:OnDialogItemClickListener
         ) : RecyclerView.Adapter<DialogActionAdapter.Viewholder>() {
     class Viewholder(private val binding:ItemDialogActionBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind (dialogAction:DialogAction){
@@ -30,6 +31,9 @@ class DialogActionAdapter (
     override fun onBindViewHolder(holder: Viewholder, position: Int) {
         dialogActions[position].let {
             holder.bind(it)
+        }
+        holder.itemView.setOnClickListener {
+            callback.onClick(position)
         }
     }
 

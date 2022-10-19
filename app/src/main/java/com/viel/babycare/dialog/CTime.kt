@@ -16,7 +16,6 @@ class CTime {
         val calendar: Calendar = Calendar.getInstance()
         val hour:Int = calendar.get(Calendar.HOUR_OF_DAY)
         val minute:Int = calendar.get(Calendar.MINUTE)
-        val format = calendar.get(Calendar.AM_PM)
         val string: StringBuilder = StringBuilder().append(hour).append(":").append(minute)
         return string
     }

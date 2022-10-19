@@ -46,17 +46,28 @@ open class MainActivity : AppCompatActivity() {
 
         binding.navMain.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.baby_bottle -> BottleDialog.bottleDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.baby_sleep -> SleepDialog.sleepDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.baby_bath -> BathDialog.bathDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.pee -> PeeDialog.peeDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.baby_feed -> SolidsDialog.solidsDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.baby_medicine -> MedicineDialog.medicineDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.baby_vaccine ->  VaccineDialog.vaccineDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.nappy -> DiaperDialog.diaperDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.weight -> WeightDialog.weightDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.height -> HeightDialog.heightDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
-                R.id.temp -> TempDialog.tempDialog(this,HomeFragment.dialogActions,HomeFragment.adapter).show()
+                R.id.baby_bottle -> BottleDialog.bottleDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.baby_sleep -> SleepDialog.sleepDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.baby_bath -> BathDialog.bathDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.pee -> PeeDialog.peeDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.baby_feed -> SolidsDialog.solidsDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.baby_medicine -> MedicineDialog.medicineDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.baby_vaccine ->  VaccineDialog.vaccineDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.nappy -> DiaperDialog.diaperDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.weight -> WeightDialog.weightDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.height -> HeightDialog.heightDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
+                R.id.temp -> TempDialog.tempDialog(this,
+                    HomeFragment.dialogActions,HomeFragment.adapter,HomeFragment.dialogManager,false,null).show()
 
             }
             binding.drawer.closeDrawer(GravityCompat.START)

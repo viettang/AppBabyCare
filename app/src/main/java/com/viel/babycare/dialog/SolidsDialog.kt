@@ -8,11 +8,14 @@ import android.os.Build
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
+import com.viel.babycare.db.DialogManager
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.progress.GetFill
 import com.viel.babycare.progress.GetTime
@@ -24,7 +27,9 @@ object SolidsDialog {
     val gFill = GetFill()
 
     @RequiresApi(Build.VERSION_CODES.N)
-    fun solidsDialog(mainActivity: MainActivity,arr:ArrayList<DialogAction>,adapter: DialogActionAdapter):Dialog {
+    fun solidsDialog(mainActivity: MainActivity,arr:ArrayList<DialogAction>,adapter: DialogActionAdapter,
+                     dialogManager: DialogManager
+                     ,bin:Boolean,id:Int?):Dialog {
         val dialog = Dialog(mainActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_solids)
@@ -46,15 +51,40 @@ object SolidsDialog {
         val btnSave = dialog.findViewById(R.id.btn_solids_ok) as Button
         val btnCancel = dialog.findViewById(R.id.btn_solids_cancel) as Button
         val tvName = dialog.findViewById(R.id.edt_solid_name) as EditText
+
+        val btnBin = dialog.findViewById(R.id.img_bin_solids) as ImageView
+
+        if (bin == true){
+            btnBin.isVisible = true
+            btnBin.setOnClickListener {
+                dialogManager.deleteDialog(id!!)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
+        }else{
+            btnBin.isVisible = false
+        }
         btnSave.setOnClickListener {
-            val dialogAction = DialogAction(R.drawable.feed,
-                "Solids",
-                timeCurrentBath.text.toString(),
-                tvName.text.toString(),
-                tvAmount.text.toString())
-            arr.add(dialogAction)
-            adapter.notifyDataSetChanged()
-            dialog.dismiss()
+            val dialogAction = DialogAction(img = R.drawable.feed,
+                title = "Solids",
+                time = timeCurrentBath.text.toString(),
+                amount = tvName.text.toString(),
+                type = tvAmount.text.toString(),dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
+                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+            if (id == null) {
+                dialogManager.addDialog(dialogAction)
+                arr.add(dialogAction)
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }else{
+                dialogManager.updateDialog(dialogAction,id)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
+                adapter.notifyDataSetChanged()
+                dialog.dismiss()
+            }
         }
         btnCancel.setOnClickListener {
             dialog.dismiss()
