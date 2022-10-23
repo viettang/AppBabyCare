@@ -7,7 +7,7 @@ import com.viel.babycare.util.Const
 
 class DialogHelper(
     context:Context
-):SQLiteOpenHelper(context,"dialog.db",null,1) {
+):SQLiteOpenHelper(context,"dialog.db",null,2) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("""CREATE TABLE ${Const.TABLE_DIALOG}(
                              ${Const.COL_ID} INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -16,13 +16,11 @@ class DialogHelper(
                              ${Const.COL_TIME} TEXT, 
                              ${Const.COL_AMOUNT} TEXT, 
                              ${Const.COL_TYPE} TEXT, 
-                             ${Const.COL_DAYOFWEEK} INTEGER, 
-                             ${Const.COL_DAY} INTEGER, 
-                             ${Const.COL_MONTH} INTEGER, 
-                             ${Const.COL_YEAR} INTEGER)""")
+                             ${Const.COL_DATE})""")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        db.execSQL("DROP TABLE IF EXISTS ${Const.TABLE_DIALOG}")
+        onCreate(db)
     }
 }

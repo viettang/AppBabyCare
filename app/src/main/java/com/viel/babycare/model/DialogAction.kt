@@ -10,10 +10,7 @@ data class DialogAction(
     val time: String="",
     val amount:String="",
     val type:String="",
-    val dayOfWeek:Int=0,
-    val day:Int=0,
-    val mounth:Int=0,
-    val year:Int=0
+    val date:String=""
 ){
     override fun equals(other: Any?): Boolean {
         val temp = other as DialogAction

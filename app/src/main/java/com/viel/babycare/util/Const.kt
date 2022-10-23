@@ -8,8 +8,5 @@ object Const {
     const val COL_TIME = "_time"
     const val COL_AMOUNT = "_amount"
     const val COL_TYPE = "_type"
-    const val COL_DAYOFWEEK = "_dayofweek"
-    const val COL_DAY = "_day"
-    const val COL_MONTH = "_month"
-    const val COL_YEAR = "_year"
+    const val COL_DATE ="_date"
 }

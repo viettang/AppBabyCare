@@ -1,7 +1,6 @@
 package com.viel.babycare.fragments
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.os.Build
 import android.os.Bundle
@@ -9,14 +8,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.viel.babycare.MainActivity
-import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
 import com.viel.babycare.adapter.OnDialogItemClickListener
 import com.viel.babycare.databinding.FragmentHomeBinding
@@ -45,8 +41,9 @@ class HomeFragment:Fragment(),OnDialogItemClickListener {
         binding.rvMain.layoutManager = LinearLayoutManager(requireContext(),
             RecyclerView.VERTICAL,false)
         dialogManager = DialogManager(context as MainActivity)
-        dialogActions.addAll(dialogManager.getAllDialog())
+        dialogActions.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
         adapter.notifyDataSetChanged()
+
         BathDialog.bathDialog(activity as MainActivity,dialogActions,adapter, dialogManager,false,null)
         BottleDialog.bottleDialog(activity as MainActivity, dialogActions, adapter, dialogManager,false,null)
         DiaperDialog.diaperDialog(activity as MainActivity, dialogActions, adapter, dialogManager,false,null)
@@ -59,6 +56,9 @@ class HomeFragment:Fragment(),OnDialogItemClickListener {
         TempDialog.tempDialog(activity as MainActivity, dialogActions, adapter, dialogManager,false,null)
         VaccineDialog.vaccineDialog(activity as MainActivity, dialogActions, adapter, dialogManager,false,null)
         WeightDialog.weightDialog(activity as MainActivity, dialogActions, adapter, dialogManager,false,null)
+
+        DateDialog.dateDialog(activity as MainActivity,
+            dialogActions, adapter, dialogManager,null)
         return binding.root
     }
 
@@ -68,7 +68,6 @@ class HomeFragment:Fragment(),OnDialogItemClickListener {
         when(dialogAction.title){
             "Bath" -> BathDialog.bathDialog(context as MainActivity, dialogActions, adapter,
                 dialogManager,true,dialogAction.id).show()
-
             "Milk Botle" -> BottleDialog.bottleDialog(context as MainActivity, dialogActions, adapter,
                 dialogManager,true,dialogAction.id).show()
             "Diaper" -> DiaperDialog.diaperDialog(context as MainActivity, dialogActions, adapter,
@@ -84,7 +83,8 @@ class HomeFragment:Fragment(),OnDialogItemClickListener {
             "Solids" -> SolidsDialog.solidsDialog(context as MainActivity, dialogActions, adapter,
                 dialogManager,true,dialogAction.id).show()
             "Temp" -> TempDialog.tempDialog(context as MainActivity, dialogActions, adapter,
-                dialogManager,true,dialogAction.id).show()
+                dialogManager,true,dialogAction.id
+            ).show()
             "Vaccine" -> VaccineDialog.vaccineDialog(context as MainActivity, dialogActions, adapter,
                 dialogManager,true,dialogAction.id).show()
             "Weight" -> WeightDialog.weightDialog(context as MainActivity, dialogActions, adapter,

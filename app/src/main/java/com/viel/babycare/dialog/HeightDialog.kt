@@ -68,11 +68,11 @@ object HeightDialog {
         btnSave.setOnClickListener {
             val dialogAction = DialogAction(img = R.drawable.height
                 , title = "Height", time = tvTime.text.toString(), amount = tvHeight.text.toString(),
-                type = "",dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
-                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+                date = DateDialog.getDate())
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
-                arr.add(dialogAction)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{

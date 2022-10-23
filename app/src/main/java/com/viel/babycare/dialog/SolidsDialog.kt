@@ -2,9 +2,11 @@ package com.viel.babycare.dialog
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.EditText
@@ -19,6 +21,7 @@ import com.viel.babycare.db.DialogManager
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.progress.GetFill
 import com.viel.babycare.progress.GetTime
+import kotlin.math.log
 
 object SolidsDialog {
 
@@ -71,11 +74,11 @@ object SolidsDialog {
                 title = "Solids",
                 time = timeCurrentBath.text.toString(),
                 amount = tvName.text.toString(),
-                type = tvAmount.text.toString(),dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
-                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+                type = tvAmount.text.toString(),date = DateDialog.getDate())
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
-                arr.add(dialogAction)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{

@@ -1,6 +1,5 @@
 package com.viel.babycare
 
-import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.viel.babycare.adapter.BabyPagerAdapter
 import com.viel.babycare.adapter.DialogActionAdapter
 import com.viel.babycare.databinding.ActivityMainBinding
+import com.viel.babycare.db.DialogManager
 import com.viel.babycare.dialog.*
 import com.viel.babycare.fragments.HomeFragment
 
@@ -73,8 +73,9 @@ open class MainActivity : AppCompatActivity() {
             binding.drawer.closeDrawer(GravityCompat.START)
             true
         }
-
-        DateDialog.dateDialog(this,binding.tvDate)
+        binding.tvDate.setText("${DateDialog.change(DateDialog.getDayOfWeek())}, ${DateDialog.getDay()}/${DateDialog.getMonth()}/${DateDialog.getYear()}")
+        binding.tvDate.setOnClickListener { DateDialog.dateDialog(this,HomeFragment.dialogActions,HomeFragment.adapter,
+            HomeFragment.dialogManager,binding.tvDate).show() }
     }
 
 }

@@ -87,11 +87,11 @@ object BottleDialog{
                 title = "Milk Botle",
                 time = tvTime.text.toString(),
                 amount = tvAmount.text.toString(),
-                type = type, dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
-                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+                type = type, date = DateDialog.getDate())
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
-                arr.add(dialogAction)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{

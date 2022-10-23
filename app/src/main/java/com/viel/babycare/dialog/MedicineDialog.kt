@@ -80,12 +80,11 @@ object MedicineDialog{
                 title = "Medicine",
                 time = tvTime.text.toString(),
                 amount = tvName.text.toString(),
-                type = medicineAmount.text.toString(),dayOfWeek = DateDialog.getDayOfWeek(),
-                day = DateDialog.getDate(),
-                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+                type = medicineAmount.text.toString(),date = DateDialog.getDate())
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
-                arr.add(dialogAction)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{

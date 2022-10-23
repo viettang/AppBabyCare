@@ -2,9 +2,11 @@ package com.viel.babycare.dialog
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.ImageView
@@ -68,11 +70,11 @@ object SleepDialog {
                 title = "Sleep",
                 time = timeCurrentSleep.text.toString(),
                 amount = "Wake up: ${timeCurrentWakeup.text.toString()}",
-                type = "",dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
-                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+                type = "",date = DateDialog.getDate())
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
-                arr.add(dialogAction)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{

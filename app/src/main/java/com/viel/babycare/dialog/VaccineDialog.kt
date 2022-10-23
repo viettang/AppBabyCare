@@ -62,11 +62,11 @@ object VaccineDialog {
                 time = timeCurrent.text.toString(),
                 title = "Vaccine",
                 amount = "Vaccine name: ${tvName.text.toString()}",
-                type = "",dayOfWeek = DateDialog.getDayOfWeek(), day = DateDialog.getDate(),
-                mounth = DateDialog.getMonth(), year = DateDialog.getYear())
+                type = "",date = DateDialog.getDate())
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
-                arr.add(dialogAction)
+                arr.clear()
+                arr.addAll(dialogManager.getAllDialog())
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{

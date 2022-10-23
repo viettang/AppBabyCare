@@ -17,10 +17,7 @@ class DialogManager(ctx:Context) {
         values.put(Const.COL_TITLE,dialogAction.title)
         values.put(Const.COL_AMOUNT,dialogAction.amount)
         values.put(Const.COL_TYPE,dialogAction.type)
-        values.put(Const.COL_DAYOFWEEK,dialogAction.dayOfWeek)
-        values.put(Const.COL_DAY,dialogAction.day)
-        values.put(Const.COL_MONTH,dialogAction.mounth)
-        values.put(Const.COL_YEAR,dialogAction.year)
+        values.put(Const.COL_DATE,dialogAction.date)
         db.insert(Const.TABLE_DIALOG,null,values)
     }
 
@@ -32,22 +29,20 @@ class DialogManager(ctx:Context) {
         values.put(Const.COL_TITLE,dialogAction.title)
         values.put(Const.COL_AMOUNT,dialogAction.amount)
         values.put(Const.COL_TYPE,dialogAction.type)
-        values.put(Const.COL_DAYOFWEEK,dialogAction.dayOfWeek)
-        values.put(Const.COL_DAY,dialogAction.day)
-        values.put(Const.COL_MONTH,dialogAction.mounth)
-        values.put(Const.COL_YEAR,dialogAction.year)
+        values.put(Const.COL_DATE,dialogAction.date)
         db.update(Const.TABLE_DIALOG,values,"${Const.COL_ID}=$id", null)
     }
 
     fun deleteDialog(id:Int ){
         val db = dialogHelper.writableDatabase
-        db.delete(Const.TABLE_DIALOG,"${Const.COL_ID}=?", arrayOf(id.toString()))
+        db.delete(Const.TABLE_DIALOG,"${Const.COL_ID}=$id", null)
     }
 
     fun getAllDialog():List<DialogAction> {
         val dialogActions = arrayListOf<DialogAction>()
         val db = dialogHelper.readableDatabase
-        val cursor = db.query(Const.TABLE_DIALOG, null, null, null, null, null, null, null)
+        val cursor = db.query(Const.TABLE_DIALOG, null, null,
+            null, null, null, null, null)
         if (cursor != null) {
             val colIdIndex = cursor.getColumnIndex(Const.COL_ID)
             val colImgIndex = cursor.getColumnIndex(Const.COL_IMG)
@@ -55,10 +50,7 @@ class DialogManager(ctx:Context) {
             val colTitleIndex = cursor.getColumnIndex(Const.COL_TITLE)
             val colAmountIndex = cursor.getColumnIndex(Const.COL_AMOUNT)
             val colTypeIndex = cursor.getColumnIndex(Const.COL_TYPE)
-            val colDayOfWeekIndex = cursor.getColumnIndex(Const.COL_DAYOFWEEK)
-            val colDayIndex = cursor.getColumnIndex(Const.COL_DAY)
-            val colMonthIndex = cursor.getColumnIndex(Const.COL_MONTH)
-            val colYearIndex = cursor.getColumnIndex(Const.COL_YEAR)
+            val colDateIndex = cursor.getColumnIndex(Const.COL_DATE)
 
             while (cursor.moveToNext()) {
                 val id = cursor.getInt(colIdIndex)
@@ -67,10 +59,7 @@ class DialogManager(ctx:Context) {
                 val title = cursor.getString(colTitleIndex)
                 val amount = cursor.getString(colAmountIndex)
                 val type = cursor.getString(colTypeIndex)
-                val dayOfWeek = cursor.getInt(colDayOfWeekIndex)
-                val day = cursor.getInt(colDayIndex)
-                val month = cursor.getInt(colMonthIndex)
-                val year = cursor.getInt(colYearIndex)
+                val date = cursor.getString(colDateIndex)
 
                 dialogActions.add(DialogAction(id,
                     img,
@@ -78,10 +67,43 @@ class DialogManager(ctx:Context) {
                     time,
                     amount,
                     type,
-                    dayOfWeek,
-                    day,
-                    month,
-                    year))
+                    date
+                   ))
+            }
+        }
+        return dialogActions
+    }
+    fun getFinterDialog(date:String):List<DialogAction> {
+        val dialogActions = arrayListOf<DialogAction>()
+        val db = dialogHelper.readableDatabase
+        val cursor = db.query(Const.TABLE_DIALOG, null, "${Const.COL_DATE}=?",
+            arrayOf(date.toString()), null, null, null, null)
+        if (cursor != null) {
+            val colIdIndex = cursor.getColumnIndex(Const.COL_ID)
+            val colImgIndex = cursor.getColumnIndex(Const.COL_IMG)
+            val colTimeIndex = cursor.getColumnIndex(Const.COL_TIME)
+            val colTitleIndex = cursor.getColumnIndex(Const.COL_TITLE)
+            val colAmountIndex = cursor.getColumnIndex(Const.COL_AMOUNT)
+            val colTypeIndex = cursor.getColumnIndex(Const.COL_TYPE)
+            val colDateIndex = cursor.getColumnIndex(Const.COL_DATE)
+
+            while (cursor.moveToNext()) {
+                val id = cursor.getInt(colIdIndex)
+                val img = cursor.getInt(colImgIndex)
+                val time = cursor.getString(colTimeIndex)
+                val title = cursor.getString(colTitleIndex)
+                val amount = cursor.getString(colAmountIndex)
+                val type = cursor.getString(colTypeIndex)
+                val date = cursor.getString(colDateIndex)
+
+                dialogActions.add(DialogAction(id,
+                    img,
+                    title,
+                    time,
+                    amount,
+                    type,
+                    date
+                ))
             }
         }
         return dialogActions

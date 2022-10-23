@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/analysis_bath.xml" value="0.124" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/baby_bottle.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/bath.xml" value="0.14" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/bovien.xml" value="0.1615" />
@@ -35,7 +36,7 @@
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_bath.xml" value="0.20833333333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_bottle.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_custom.xml" value="0.25" />
-        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_date.xml" value="0.24114583333333334" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_date.xml" value="0.2" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_diaper.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_fill.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_filldoc.xml" value="0.2421875" />

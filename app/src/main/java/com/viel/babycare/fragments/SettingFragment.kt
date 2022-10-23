@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.viel.babycare.databinding.FragmentAnalysisBinding
 import com.viel.babycare.databinding.FragmentSettingBinding
 
 class SettingFragment:Fragment() {
