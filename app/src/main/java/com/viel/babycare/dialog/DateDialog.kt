@@ -21,6 +21,7 @@ object DateDialog: DialogFragment(){
 
     val calendar:Calendar = Calendar.getInstance()
     private var date:String = "${getDay()}/${getMonth()+1}/${getYear()}"
+    private var dateOfWeek:Int = 0
     var dateTv = ""
 
 
@@ -46,6 +47,7 @@ object DateDialog: DialogFragment(){
             val year = picker.year
             date = "$day/${month+1}/$year"
             calendar.set(year,month,day)
+            dateOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
             dateTv = "${change(calendar.get(Calendar.DAY_OF_WEEK))}, $date"
             tv?.setText(dateTv)
             arr.clear()

@@ -1,7 +1,6 @@
 package com.viel.babycare.fragments
 
 import android.annotation.SuppressLint
-import android.content.ContentValues.TAG
 import android.os.Build
 import android.os.Bundle
 import android.util.Log

@@ -51,7 +51,7 @@ object PeeDialog {
             btnBin.setOnClickListener {
                 dialogManager.deleteDialog(id!!)
                 arr.clear()
-                arr.addAll(dialogManager.getAllDialog())
+                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }
@@ -72,13 +72,13 @@ object PeeDialog {
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
                 arr.clear()
-                arr.addAll(dialogManager.getAllDialog())
+                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{
                 dialogManager.updateDialog(dialogAction,id)
                 arr.clear()
-                arr.addAll(dialogManager.getAllDialog())
+                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }

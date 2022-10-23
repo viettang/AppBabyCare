@@ -77,7 +77,43 @@ class DialogManager(ctx:Context) {
         val dialogActions = arrayListOf<DialogAction>()
         val db = dialogHelper.readableDatabase
         val cursor = db.query(Const.TABLE_DIALOG, null, "${Const.COL_DATE}=?",
-            arrayOf(date.toString()), null, null, null, null)
+            arrayOf(date), null, null, null, null)
+        if (cursor != null) {
+            val colIdIndex = cursor.getColumnIndex(Const.COL_ID)
+            val colImgIndex = cursor.getColumnIndex(Const.COL_IMG)
+            val colTimeIndex = cursor.getColumnIndex(Const.COL_TIME)
+            val colTitleIndex = cursor.getColumnIndex(Const.COL_TITLE)
+            val colAmountIndex = cursor.getColumnIndex(Const.COL_AMOUNT)
+            val colTypeIndex = cursor.getColumnIndex(Const.COL_TYPE)
+            val colDateIndex = cursor.getColumnIndex(Const.COL_DATE)
+
+            while (cursor.moveToNext()) {
+                val id = cursor.getInt(colIdIndex)
+                val img = cursor.getInt(colImgIndex)
+                val time = cursor.getString(colTimeIndex)
+                val title = cursor.getString(colTitleIndex)
+                val amount = cursor.getString(colAmountIndex)
+                val type = cursor.getString(colTypeIndex)
+                val date = cursor.getString(colDateIndex)
+
+                dialogActions.add(DialogAction(id,
+                    img,
+                    title,
+                    time,
+                    amount,
+                    type,
+                    date
+                ))
+            }
+        }
+        return dialogActions
+    }
+
+    fun getChart(date:String):List<DialogAction> {
+        val dialogActions = arrayListOf<DialogAction>()
+        val db = dialogHelper.readableDatabase
+        val cursor = db.query(Const.TABLE_DIALOG, null, "${Const.COL_DATE}=? ",
+            arrayOf(date), null, null, null, null)
         if (cursor != null) {
             val colIdIndex = cursor.getColumnIndex(Const.COL_ID)
             val colImgIndex = cursor.getColumnIndex(Const.COL_IMG)

@@ -47,7 +47,7 @@ object SolidsDialog {
         }
 
         val tvAmount: TextView = dialog.findViewById(R.id.tv_solids_amount)
-        tvAmount.text = "1.0"
+        tvAmount.text = "1ml"
         tvAmount.setOnClickListener {
             gFill.getFill(mainActivity, tvAmount, "g", "oz", "ml", "tsp")
         }
@@ -62,7 +62,7 @@ object SolidsDialog {
             btnBin.setOnClickListener {
                 dialogManager.deleteDialog(id!!)
                 arr.clear()
-                arr.addAll(dialogManager.getAllDialog())
+                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }
@@ -78,13 +78,13 @@ object SolidsDialog {
             if (id == null) {
                 dialogManager.addDialog(dialogAction)
                 arr.clear()
-                arr.addAll(dialogManager.getAllDialog())
+                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }else{
                 dialogManager.updateDialog(dialogAction,id)
                 arr.clear()
-                arr.addAll(dialogManager.getAllDialog())
+                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
                 dialog.dismiss()
             }

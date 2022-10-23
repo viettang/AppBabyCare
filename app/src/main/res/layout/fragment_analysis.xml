@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Solid"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:layout_gravity="center_horizontal"
+                            />
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/solid_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp"
+                            />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Milk"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:layout_gravity="center_horizontal"
+                            />
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/bottle_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Height"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:layout_gravity="center_horizontal"
+                            />
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/height_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weight"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:layout_gravity="center_horizontal"
+                            />
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/weight_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temp"
+                            android:layout_marginTop="10dp"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:layout_gravity="center_horizontal"
+                            />
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/temp_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="400dp"
+                            />
+                </LinearLayout>
+        </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

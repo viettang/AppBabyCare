@@ -37,17 +37,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 />
+
             <TextView
                 android:id="@+id/tv_name_app"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="Baby care"
-                android:fontFamily="@font/font_main1"
-                android:textSize="35sp"
                 android:layout_gravity="center"
+                android:layout_weight="2"
+                android:fontFamily="@font/viel"
                 android:gravity="center"
-                />
+                android:text="Baby care"
+                android:textSize="35sp" />
+
             <androidx.legacy.widget.Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +64,8 @@
             app:layout_constraintTop_toBottomOf="@id/action_bar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:drawableRight="@drawable/ic_triangle"
+            android:drawableBottom="@drawable/ic_triangle"
+            android:fontFamily="@font/viel"
             android:gravity="center"
             android:textSize="23sp"
             android:textStyle="bold"/>
