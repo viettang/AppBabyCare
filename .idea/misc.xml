@@ -3,36 +3,55 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/BabyCare/app/src/main/res/drawable-v24/ic_setting.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/alarm_background.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/analysis.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/analysis_bath.xml" value="0.124" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/baby_bottle.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/bath.xml" value="0.14" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/bovien.xml" value="0.1615" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/cry.xml" value="0.141" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/date_background.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/feed.xml" value="0.141" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/height.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/home.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_alarm.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_analysis.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_analysisen.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_baby_pee.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_feed.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_happy.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_hight.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_home.xml" value="0.1" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_img_header.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_medicine.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_menu.xml" value="0.1615" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_nappy.xml" value="0.141" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_pee.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_setting.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_sleep.xml" value="0.1615" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_temp.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_triangle.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_vaccin.xml" value="0.141" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/ic_weight.xml" value="0.141" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/medicine.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/nappy.xml" value="0.141" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/setting.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/spiner_main.xml" value="0.1615" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/spinner_main.xml" value="0.1615" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/spline.xml" value="0.1615" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/spline_dialog.xml" value="0.1615" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/spline_recycleview.xml" value="0.1555" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/tab_background.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/temp.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/weight.xml" value="0.1555" />
         <entry key="..\:/BabyCare/app/src/main/res/font/font_main.xml" value="0.2611111111111111" />
         <entry key="..\:/BabyCare/app/src/main/res/font/font_main1.xml" value="0.2611111111111111" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/a.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/activity_screen_start.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/activity_sleep.xml" value="0.22826086956521738" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_alarm.xml" value="0.24114583333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_bath.xml" value="0.20833333333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_bottle.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_custom.xml" value="0.25" />
@@ -50,12 +69,15 @@
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_time.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_vaccine.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_weight.xml" value="0.2421875" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_yes_no.xml" value="0.19786324786324785" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/flash_screen.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_analysis.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_setting.xml" value="0.19786324786324785" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/hearder_main.xml" value="0.16700819672131148" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/item_dialog_action.xml" value="0.2" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/spinner_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/start_screen.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/menu/main.xml" value="0.2421875" />
       </map>
     </option>

@@ -10,8 +10,9 @@ import android.widget.TimePicker
 import androidx.annotation.RequiresApi
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
+import com.viel.babycare.adapter.OnButtonClickListener
 
-class GetTime {
+class GetTime{
     @RequiresApi(Build.VERSION_CODES.M)
     fun getTime(mainActivity: MainActivity, currentTime: TextView){
         val dialog = Dialog(mainActivity)

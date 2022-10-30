@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_item"
     android:layout_width="match_parent"
     android:layout_height="65dp"
     android:layout_margin="5dp"
-    android:background="@drawable/spline_recycleview"
     android:orientation="horizontal">
 
     <ImageView
@@ -53,9 +53,10 @@
         android:id="@+id/tv_item_time"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
+        android:gravity="center"
         android:textStyle="bold"
         android:textSize="18sp"
+        android:drawableLeft="@drawable/ic_icon_time_right"
         />
 
 

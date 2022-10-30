@@ -6,10 +6,12 @@ import android.graphics.Color
 import android.util.Log
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.renderer.YAxisRenderer
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.viel.babycare.db.DialogManager
 
@@ -36,17 +38,17 @@ object ClearWord {
             }
             if (title == "Height") {
                 if(arr[i].title == "Height") {
-                    total += clearWord(arr[i].amount)
+                    total = clearWord(arr[i].amount)
                 }
             }
             if (title == "Temp") {
                 if(arr[i].title == "Temp") {
-                    total += clearWord(arr[i].amount)
+                    total = clearWord(arr[i].amount)
                 }
             }
             if (title == "Weight") {
                 if(arr[i].title == "Weight") {
-                    total += clearWord(arr[i].amount)
+                    total = clearWord(arr[i].amount)
                 }
             }
         }
@@ -82,5 +84,6 @@ object ClearWord {
         barDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 10f
+
     }
 }

@@ -51,11 +51,7 @@ object TempDialog {
         if (bin == true){
             btnBin.isVisible = true
             btnBin.setOnClickListener {
-                dialogManager.deleteDialog(id!!)
-                arr.clear()
-                arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
-                adapter.notifyDataSetChanged()
-                dialog.dismiss()
+                YesNoDialog.yesNoDialog(mainActivity,arr,adapter,dialogManager,id,dialog)
             }
         }else{
             btnBin.isVisible = false

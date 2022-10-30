@@ -4,17 +4,23 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
+import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import com.github.mikephil.charting.charts.BarChart
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
+import com.viel.babycare.databinding.FragmentAnalysisBinding
 import com.viel.babycare.db.DialogManager
+import com.viel.babycare.fragments.AnalysisFragment
+import com.viel.babycare.fragments.HomeFragment
 import com.viel.babycare.model.DialogAction
+import com.viel.babycare.progress.*
 import java.util.*
 
 object DateDialog: DialogFragment(){
@@ -23,6 +29,9 @@ object DateDialog: DialogFragment(){
     private var date:String = "${getDay()}/${getMonth()+1}/${getYear()}"
     private var dateOfWeek:Int = 0
     var dateTv = ""
+    private var day = getDay()
+    private var month = getMonth()
+    private var year = getYear()
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -42,9 +51,9 @@ object DateDialog: DialogFragment(){
 
 
         btnOk.setOnClickListener {
-            val day = picker.dayOfMonth
-            val month = picker.month
-            val year = picker.year
+            day = picker.dayOfMonth
+            month = picker.month
+            year = picker.year
             date = "$day/${month+1}/$year"
             calendar.set(year,month,day)
             dateOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
@@ -59,6 +68,19 @@ object DateDialog: DialogFragment(){
             dayDialog.dismiss()
         }
         return dayDialog
+    }
+
+    fun getDay1(): Int {
+        val day = day
+        return day
+    }
+    fun getMonth1():Int{
+        val month = month
+        return month
+    }
+    fun getYear1():Int{
+        val year = year
+        return year
     }
 
     fun getDate():String{

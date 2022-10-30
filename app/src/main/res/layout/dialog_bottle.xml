@@ -79,6 +79,8 @@
         android:drawableRight="@drawable/ic_pen"
         android:textStyle="bold"
         android:background="@drawable/spline"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
@@ -89,6 +91,7 @@
         android:layout_marginLeft="40dp"
         android:text="OK"
         android:layout_marginTop="60dp"
+        android:backgroundTint="@color/orange3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 <Button
@@ -98,6 +101,7 @@
         android:layout_marginRight="40dp"
         android:text="cancel"
         android:layout_marginTop="60dp"
+        android:backgroundTint="@color/orange3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
@@ -133,7 +137,9 @@
         android:textStyle="bold"
         android:background="@drawable/spline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
     <ImageView
         android:id="@+id/img_bin_bottle"
         android:visibility="gone"

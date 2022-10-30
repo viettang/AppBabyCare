@@ -38,7 +38,7 @@ class DialogManager(ctx:Context) {
         db.delete(Const.TABLE_DIALOG,"${Const.COL_ID}=$id", null)
     }
 
-    fun getAllDialog():List<DialogAction> {
+    fun getAlarmDialog():List<DialogAction> {
         val dialogActions = arrayListOf<DialogAction>()
         val db = dialogHelper.readableDatabase
         val cursor = db.query(Const.TABLE_DIALOG, null, null,
