@@ -65,6 +65,9 @@ object MedicineDialog{
 
         if (bin == true){
             btnBin.isVisible = true
+            tvTime.setText(dialogManager.getId(id!!)[0].time)
+            tvName.setText(dialogManager.getId(id!!)[0].amount)
+            medicineAmount.setText(dialogManager.getId(id!!)[0].type)
             btnBin.setOnClickListener {
                 YesNoDialog.yesNoDialog(mainActivity,arr,adapter,dialogManager,id,dialog)
             }

@@ -23,7 +23,7 @@ object ClearWord {
     }
 
     fun allAmount(dialogManager: DialogManager, day: String, title: String): Int {
-        val arr = dialogManager.getChart(day)
+        val arr = dialogManager.getFinterDialog(day)
         var total = 0
         for (i in 0..arr.size - 1) {
             if (title == "Solids") {
@@ -84,6 +84,7 @@ object ClearWord {
         barDataSet.setColors(ColorTemplate.JOYFUL_COLORS,250)
         barDataSet.valueTextColor = Color.BLACK
         barDataSet.valueTextSize = 10f
+
 
     }
 }

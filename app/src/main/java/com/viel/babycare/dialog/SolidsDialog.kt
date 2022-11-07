@@ -39,11 +39,11 @@ object SolidsDialog {
         dialog.setCanceledOnTouchOutside(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        val timeCurrentBath: TextView = dialog.findViewById(R.id.tv_solids_time)
-        timeCurrentBath.text = time.cTime()
+        val timeCurrentSolids: TextView = dialog.findViewById(R.id.tv_solids_time)
+        timeCurrentSolids.text = time.cTime()
 
-        timeCurrentBath.setOnClickListener {
-            gTime.getTime(mainActivity, timeCurrentBath)
+        timeCurrentSolids.setOnClickListener {
+            gTime.getTime(mainActivity, timeCurrentSolids)
         }
 
         val tvAmount: TextView = dialog.findViewById(R.id.tv_solids_amount)
@@ -59,6 +59,9 @@ object SolidsDialog {
 
         if (bin == true){
             btnBin.isVisible = true
+            timeCurrentSolids.setText(dialogManager.getId(id!!)[0].time)
+            tvName.setText(dialogManager.getId(id!!)[0].amount)
+            tvAmount.setText(dialogManager.getId(id!!)[0].type)
             btnBin.setOnClickListener {
                 YesNoDialog.yesNoDialog(mainActivity,arr,adapter,dialogManager,id,dialog)
             }
@@ -68,7 +71,7 @@ object SolidsDialog {
         btnSave.setOnClickListener {
             val dialogAction = DialogAction(img = R.drawable.feed,
                 title = "Solids",
-                time = timeCurrentBath.text.toString(),
+                time = timeCurrentSolids.text.toString(),
                 amount = tvName.text.toString(),
                 type = tvAmount.text.toString(),date = DateDialog.getDate())
             if (id == null) {

@@ -1,6 +1,8 @@
 package com.viel.babycare.fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,23 +46,27 @@ class AnalysisFragment:Fragment() {
 
     override fun onStart() {
         super.onStart()
-        binding.btnRefresh.setOnClickListener {
-            val animRefresh = AnimationUtils.loadAnimation(context,R.anim.anim_refresh)
-            binding.btnRefresh.startAnimation(animRefresh)
-            ChartSolid.chartSolid(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
-                DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.solidChart)
 
-            ChartBottle.chartBottle(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
-                DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.bottleChart)
-
-            ChartHeight.chartHeight(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
-                DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.heightChart)
-
-            ChartWeight.chartWeight(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
-                DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.weightChart)
-
-            ChartTemp.chartTemp(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
-                DateDialog.getDayOfWeek(),HomeFragment.dialogManager,binding.tempChart)
-        }
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        super.onStop()
+        ChartSolid.chartSolid(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
+            DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.solidChart)
+
+        ChartBottle.chartBottle(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
+            DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.bottleChart)
+
+        ChartHeight.chartHeight(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
+            DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.heightChart)
+
+        ChartWeight.chartWeight(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
+            DateDialog.getDayOfWeek(),HomeFragment.dialogManager, binding.weightChart)
+
+        ChartTemp.chartTemp(DateDialog.getYear1(),DateDialog.getMonth1(),DateDialog.getDay1(),
+            DateDialog.getDayOfWeek(),HomeFragment.dialogManager,binding.tempChart)
+    }
+
 }

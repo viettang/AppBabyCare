@@ -55,6 +55,8 @@ object HeightDialog {
 
         if (bin == true){
             btnBin.isVisible = true
+            tvTime.setText(dialogManager.getId(id!!)[0].time)
+            tvHeight.setText(dialogManager.getId(id!!)[0].amount)
             btnBin.setOnClickListener {
                 YesNoDialog.yesNoDialog(mainActivity,arr,adapter,dialogManager,id,dialog)
             }

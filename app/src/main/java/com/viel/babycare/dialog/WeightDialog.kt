@@ -53,6 +53,8 @@ object WeightDialog {
 
         if (bin == true){
             btnBin.isVisible = true
+            timeCurrent.setText(dialogManager.getId(id!!)[0].time)
+            weight.setText(dialogManager.getId(id!!)[0].amount)
             btnBin.setOnClickListener {
                 YesNoDialog.yesNoDialog(mainActivity,arr,adapter,dialogManager,id,dialog)
             }

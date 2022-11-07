@@ -1,4 +1,6 @@
 package com.viel.babycare.adapter
 
-class OnProfileListener {
+interface OnProfileListener {
+
+    fun onProfileClick(gender:String,name:String,day:Int,month:Int,year:Int)
 }

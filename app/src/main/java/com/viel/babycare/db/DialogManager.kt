@@ -3,7 +3,10 @@ package com.viel.babycare.db
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.viel.babycare.model.DialogAction
+import com.viel.babycare.model.Profile
 import com.viel.babycare.util.Const
 
 class DialogManager(ctx:Context) {
@@ -32,17 +35,26 @@ class DialogManager(ctx:Context) {
         values.put(Const.COL_DATE,dialogAction.date)
         db.update(Const.TABLE_DIALOG,values,"${Const.COL_ID}=$id", null)
     }
+    fun deleteAllDialog(){
+        val db = dialogHelper.writableDatabase
+        db.delete(Const.TABLE_DIALOG,null, null)
+    }
 
     fun deleteDialog(id:Int ){
         val db = dialogHelper.writableDatabase
         db.delete(Const.TABLE_DIALOG,"${Const.COL_ID}=$id", null)
     }
 
+    fun deleteAlarmDialog(){
+        val db = dialogHelper.writableDatabase
+        db.delete(Const.TABLE_DIALOG,"${Const.COL_TITLE}=?", arrayOf("Alarm"))
+    }
+
     fun getAlarmDialog():List<DialogAction> {
         val dialogActions = arrayListOf<DialogAction>()
         val db = dialogHelper.readableDatabase
-        val cursor = db.query(Const.TABLE_DIALOG, null, null,
-            null, null, null, null, null)
+        val cursor = db.query(Const.TABLE_DIALOG, null, "${Const.COL_TITLE}=?",
+            arrayOf("Alarm"), null, null, null, null)
         if (cursor != null) {
             val colIdIndex = cursor.getColumnIndex(Const.COL_ID)
             val colImgIndex = cursor.getColumnIndex(Const.COL_IMG)
@@ -109,11 +121,11 @@ class DialogManager(ctx:Context) {
         return dialogActions
     }
 
-    fun getChart(date:String):List<DialogAction> {
+    fun getId(id:Int):List<DialogAction> {
         val dialogActions = arrayListOf<DialogAction>()
         val db = dialogHelper.readableDatabase
-        val cursor = db.query(Const.TABLE_DIALOG, null, "${Const.COL_DATE}=? ",
-            arrayOf(date), null, null, null, null)
+        val cursor = db.query(Const.TABLE_DIALOG, null, "${Const.COL_ID}=$id ",
+            null, null, null, null, null)
         if (cursor != null) {
             val colIdIndex = cursor.getColumnIndex(Const.COL_ID)
             val colImgIndex = cursor.getColumnIndex(Const.COL_IMG)

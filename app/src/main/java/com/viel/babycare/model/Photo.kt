@@ -1,3 +1,5 @@
 package com.viel.babycare.model
 
-data class Photo()
+data class Photo(
+    val img:Int
+)

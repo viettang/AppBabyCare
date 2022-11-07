@@ -25,7 +25,7 @@ class GetTime{
         timePicker.setIs24HourView(true)
         val save: Button =dialog.findViewById(R.id.btn_save_time)
         save.setOnClickListener {
-            currentTime.text = "${timePicker.hour} : ${timePicker.minute}"
+            currentTime.text = "${timePicker.hour}:${timePicker.minute}"
             dialog.dismiss()
         }
     }

@@ -47,6 +47,7 @@ object VaccineDialog {
 
         if (bin == true){
             btnBin.isVisible = true
+            timeCurrent.setText(dialogManager.getId(id!!)[0].time)
             btnBin.setOnClickListener {
                 YesNoDialog.yesNoDialog(mainActivity,arr,adapter,dialogManager,id,dialog)
             }
