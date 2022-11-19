@@ -24,6 +24,7 @@ class DateDialogDigital(
         dateDialogDigital.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dateDialogDigital.setCanceledOnTouchOutside(false)
         dateDialogDigital.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dateDialogDigital.window?.attributes!!.windowAnimations = androidx.appcompat.R.style.Animation_AppCompat_DropDownUp
         dateDialogDigital.setContentView(R.layout.dialog_date_digital)
         dateDialogDigital.show()
 

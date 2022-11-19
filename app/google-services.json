@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "530349402359",
+    "project_id": "babycare-ecdef",
+    "storage_bucket": "babycare-ecdef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530349402359:android:bbbbe11d20cebd79654bf2",
+        "android_client_info": {
+          "package_name": "com.viel.babycare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530349402359-nked45lu6jolqf1nri58naeplamgddft.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.viel.babycare",
+            "certificate_hash": "5383b19e5980cc0ae677ebc200f107a5a317810c"
+          }
+        },
+        {
+          "client_id": "530349402359-neepo8bkhtjkakl9rk8ss8d98qe39igd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuDh8k8cqI2xryhUqZPa_LRcOX5iX9umQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530349402359-neepo8bkhtjkakl9rk8ss8d98qe39igd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

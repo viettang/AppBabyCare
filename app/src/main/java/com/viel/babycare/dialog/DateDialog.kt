@@ -42,6 +42,7 @@ object DateDialog: DialogFragment(){
         dayDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dayDialog.setCanceledOnTouchOutside(false)
         dayDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dayDialog.window?.attributes!!.windowAnimations = androidx.appcompat.R.style.Animation_AppCompat_DropDownUp
         dayDialog.setContentView(R.layout.dialog_date)
         tv?.setOnClickListener { dayDialog.show() }
 
@@ -71,21 +72,28 @@ object DateDialog: DialogFragment(){
     }
 
     fun getDay1(): Int {
-        val day = day
         return day
     }
     fun getMonth1():Int{
-        val month = month
         return month
     }
     fun getYear1():Int{
-        val year = year
         return year
     }
 
     fun getDate():String{
         val currentDate = date
         return currentDate
+    }
+
+    fun getHour():Int{
+        val currentHour = calendar.get(Calendar.HOUR)
+        return currentHour
+    }
+
+    fun getMinute():Int{
+        val currentMinute = calendar.get(Calendar.MINUTE)
+        return currentMinute
     }
 
     fun getDay():Int{

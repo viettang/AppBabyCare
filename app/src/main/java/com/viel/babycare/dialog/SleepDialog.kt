@@ -13,6 +13,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
@@ -24,6 +28,7 @@ object SleepDialog {
 
     val time: CTime = CTime()
     val gTime = GetTime()
+    private lateinit var database:DatabaseReference
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun sleepDialog(
@@ -33,9 +38,10 @@ object SleepDialog {
         ,bin:Boolean,id:Int?): Dialog {
         val dialog = Dialog(mainActivity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_sleep)
         dialog.setCanceledOnTouchOutside(false)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes!!.windowAnimations = androidx.appcompat.R.style.Animation_AppCompat_DropDownUp
+        dialog.setContentView(R.layout.dialog_sleep)
 
         val timeCurrentSleep: TextView = dialog.findViewById(R.id.tv_fall_sleep)
         val timeCurrentWakeup: TextView = dialog.findViewById(R.id.tv_wake_up)
@@ -73,12 +79,16 @@ object SleepDialog {
                 arr.clear()
                 arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
+
+                checkAddFireBase(dialogManager)
                 dialog.dismiss()
             }else{
                 dialogManager.updateDialog(dialogAction,id)
                 arr.clear()
                 arr.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
                 adapter.notifyDataSetChanged()
+
+                checkUpdateFireBase(dialogManager,id)
                 dialog.dismiss()
             }
         }
@@ -86,5 +96,31 @@ object SleepDialog {
             dialog.dismiss()
         }
         return dialog
+    }
+
+    private fun checkUpdateFireBase(dialogManager: DialogManager,id: Int?) {
+        val user = Firebase.auth.currentUser
+        user?.let {
+            val email = user.email
+
+            database = Firebase.database.getReference(email!!.replace(".",""))
+            val pathObject = dialogManager.getAll().indexOf(DialogAction(id = id!!)).toString()
+            database.child(pathObject).setValue(dialogManager.
+            getAll()[dialogManager.getAll().indexOf(DialogAction(id = id))])
+        }
+
+    }
+
+    private fun checkAddFireBase(dialogManager: DialogManager) {
+        val user = Firebase.auth.currentUser
+        user?.let {
+            val email = user.email
+
+            database = Firebase.database.getReference(email!!.replace(".",""))
+            val pathObject = (dialogManager.getAll().size - 1).toString()
+
+            database.child(pathObject).setValue(dialogManager.
+            getAll()[dialogManager.getAll().size - 1])
+        }
     }
 }

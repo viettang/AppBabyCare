@@ -1,5 +1,6 @@
 package com.viel.babycare
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -14,45 +15,39 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.core.content.getSystemService
 import androidx.core.view.GravityCompat
-import androidx.fragment.app.FragmentManager
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.viel.babycare.adapter.BabyPagerAdapter
-import com.viel.babycare.adapter.DialogActionAdapter
 import com.viel.babycare.adapter.OnButtonClickListener
 import com.viel.babycare.databinding.ActivityMainBinding
 import com.viel.babycare.db.DialogManager
 import com.viel.babycare.db.ProfileManager
 import com.viel.babycare.dialog.*
-import com.viel.babycare.fragments.AnalysisFragment
 import com.viel.babycare.fragments.HomeFragment
 import com.viel.babycare.model.AlarmReceiver
-import com.viel.babycare.model.Photo
 import com.viel.babycare.progress.CaculateAge
-import com.viel.babycare.progress.ClearWord
+import com.viel.babycare.progress.Regex
 import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.math.log
 
 
-open class MainActivity : AppCompatActivity(),OnButtonClickListener{
+open class MainActivity : AppCompatActivity(),OnButtonClickListener {
 
     private lateinit var binding:ActivityMainBinding
     private lateinit var alarmManager: AlarmManager
     private lateinit var calendar: Calendar
     private lateinit var pendingIntent: PendingIntent
-    private lateinit var alarm:AlarmDialog
+    private val alarm:AlarmDialog = AlarmDialog(this)
     private val profileManager: ProfileManager = ProfileManager(this)
     private val cA = CaculateAge()
+    private val dialogManager:DialogManager = DialogManager(this)
 
+    @SuppressLint("ResourceType")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         val ageWeek = cA.caculateAge(profileManager.getProfile()[0].dayOfBirth,profileManager.
         getProfile()[0].monthOfBirth,profileManager.getProfile()[0].yearOfBirth)
@@ -75,9 +70,10 @@ open class MainActivity : AppCompatActivity(),OnButtonClickListener{
            }
         }
 
-        binding.tvAgeMain.text = "${ageWeek} Week"
-
-
+//        binding.navMain.setItemBackgroundResource(R.color.black)
+//        binding.navMain.itemTextColor = ColorStateList.valueOf(Color.WHITE)
+//        binding.tlMain.backgroundTintList = ColorStateList.valueOf(Color.BLACK)
+//        binding.tlMain.tabIconTint = ColorStateList.valueOf(Color.WHITE)
         binding.navMain.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.baby_bottle -> BottleDialog.bottleDialog(this,
@@ -111,15 +107,19 @@ open class MainActivity : AppCompatActivity(),OnButtonClickListener{
         binding.tvDate.setOnClickListener { DateDialog.dateDialog(this,HomeFragment.dialogActions,HomeFragment.adapter,
             HomeFragment.dialogManager,binding.tvDate).show() }
 
-        alarm = AlarmDialog(this)
         binding.fabAlarm.setOnClickListener {
             alarm.alarmDialog(this,HomeFragment.dialogActions,HomeFragment.adapter,
                 HomeFragment.dialogManager,false,null).show()
-            alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         }
 
 
         createNotificationChanel()
+
+        binding.imgBell.setOnClickListener {
+            val intent = Intent(this,NotificationActivity::class.java)
+            startActivity(intent)
+        }
+
 
 
     }
@@ -144,30 +144,26 @@ open class MainActivity : AppCompatActivity(),OnButtonClickListener{
         }
     }
 
-    override fun onButtonClick(hour: Int, minute: Int) {
+    override fun onButtonClick() {
         calendar = Calendar.getInstance()
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
         val intent = Intent(this,AlarmReceiver::class.java)
+        val position = dialogManager.getAlarmDialog().size-1
+        intent.putExtra("note","${dialogManager.getAlarmDialog()[position].amount}")
+        val setTime = dialogManager.getAlarmDialog()[position].time
 
-        calendar[Calendar.HOUR_OF_DAY] = hour
-        calendar[Calendar.MINUTE] = minute
+        calendar[Calendar.DAY_OF_MONTH] = DateDialog.getDay1()
+        calendar[Calendar.MONTH] = DateDialog.getMonth1()
+        calendar[Calendar.YEAR] = DateDialog.getYear1()
+        calendar[Calendar.HOUR_OF_DAY] = Regex.regex(setTime)[0]
+        calendar[Calendar.MINUTE] = Regex.regex(setTime)[1]
         calendar[Calendar.MILLISECOND] = 0
         calendar[Calendar.SECOND] = 0
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,PendingIntent.FLAG_MUTABLE)
+        pendingIntent = PendingIntent.getBroadcast(this,position,intent,
+            PendingIntent.FLAG_MUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,pendingIntent)
-
-
+        Log.d(TAG, "onButtonClick: xxkjjbJXHJAkjxhkahhajhjaxjja")
     }
-
-    override fun onResume() {
-        super.onResume()
-        val ageWeek = cA.caculateAge(profileManager.getProfile()[0].dayOfBirth,profileManager.
-        getProfile()[0].monthOfBirth,profileManager.getProfile()[0].yearOfBirth)
-            ?.get(1)
-        binding.tvAgeMain.text = "${ageWeek} Week"
-    }
-
-
 }
 
 

@@ -17,4 +17,5 @@ object Const {
     const val COL_DAY = "_day"
     const val COL_MONTH = "_month"
     const val COL_YEAR = "_year"
+    const val COL_INOTATION = "_inotation"
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.viel.babycare.adapter.OnButtonDateListener
 import com.viel.babycare.databinding.ActivitySettingProfileBinding
@@ -12,6 +13,7 @@ import com.viel.babycare.db.DialogManager
 import com.viel.babycare.db.ProfileManager
 import com.viel.babycare.dialog.DateDialog
 import com.viel.babycare.dialog.DateDialogDigital
+import com.viel.babycare.dialog.WarningDialog
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.model.Profile
 
@@ -27,6 +29,7 @@ class SettingProfileActivity : AppCompatActivity(),OnButtonDateListener {
     private lateinit var dateDialogDigital:DateDialogDigital
     private lateinit var dialogManager: DialogManager
     private var isHide = 0
+    private val wD = WarningDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,13 +38,16 @@ class SettingProfileActivity : AppCompatActivity(),OnButtonDateListener {
 
         isHide = intent.getIntExtra("hide",0)
         if (isHide == 1){
+            binding.tvCreatProfile.isVisible = true
             binding.tvProfile.isVisible = false
             binding.imgBack.isVisible = false
             binding.btnDelProfile.isVisible = false
         }else{
+
             binding.tvProfile.isVisible = true
             binding.imgBack.isVisible = true
             binding.btnDelProfile.isVisible = true
+            binding.tvCreatProfile.isVisible = false
         }
 
         profileManager = ProfileManager(this)
@@ -79,13 +85,18 @@ class SettingProfileActivity : AppCompatActivity(),OnButtonDateListener {
 
         binding.tvSaveProfile.setOnClickListener {
             name = binding.edtProfileName.text.toString()
-            profileManager.addProfile(Profile(gender = gender, name = name,
-                dayOfBirth = day, monthOfBirth = month, yearOfBirth = year))
-            if (isHide==0) {
-                finish()
-            }else{
-                val intent:Intent = Intent(this,MainActivity::class.java)
-                startActivity(intent)
+
+            if (binding.edtProfileName.text.toString() == "" || binding.edtProfileBirthday.text.toString() == "") {
+                wD.warningDialog(this,null,2)
+            } else {
+                profileManager.addProfile(Profile(gender = gender, name = name,
+                    dayOfBirth = day, monthOfBirth = month, yearOfBirth = year, inotation = ""))
+                if (isHide == 0) {
+                    finish()
+                } else {
+                    val intent: Intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
@@ -94,7 +105,9 @@ class SettingProfileActivity : AppCompatActivity(),OnButtonDateListener {
             dialogManager.deleteAllDialog()
 
             val intent:Intent = Intent(this,ScreenStart::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+            finishAffinity()
         }
 
     }

@@ -1,8 +1,6 @@
 package com.viel.babycare.fragments
 
 import android.annotation.SuppressLint
-import android.app.AlarmManager
-import android.content.Context.ALARM_SERVICE
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -11,13 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
@@ -29,7 +24,6 @@ import com.viel.babycare.dialog.*
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.model.Photo
 import kotlinx.coroutines.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeFragment:Fragment(),OnDialogItemClickListener{
@@ -77,7 +71,7 @@ class HomeFragment:Fragment(),OnDialogItemClickListener{
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 mHandler.removeCallbacks(mRunable)
-                mHandler.postDelayed(mRunable,4500)
+                mHandler.postDelayed(mRunable,3000)
             }
         })
 

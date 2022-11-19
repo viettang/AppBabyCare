@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:orientation="horizontal"
-            android:weightSum="7"
+            android:weightSum="6"
             >
             <ImageView
                 android:id="@+id/home"
@@ -33,28 +33,44 @@
                 android:scaleY="0.6"
                 android:layout_weight="1"
                 />
-            <TextView
-                android:id="@+id/tv_age_main"
+
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:text="abc"
-                android:fontFamily="@font/viel"
-                android:textSize="25sp"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_age"
-                />
+                android:layout_weight="1"/>
 
             <TextView
                 android:id="@+id/tv_name_app"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="4"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/viel"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:text="Baby care"
                 android:textSize="35sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/img_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_bell"/>
+                <ImageView
+                    android:id="@+id/img_dot_notification"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/dot_notifi"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginBottom="6dp"
+                    />
+
+            </FrameLayout>
 
 
         </LinearLayout>
@@ -73,9 +89,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:drawableBottom="@drawable/ic_triangle"
-        android:fontFamily="@font/viel"
         android:gravity="center"
-        android:textSize="23sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         />
     <ImageView
@@ -108,8 +123,6 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:tabSelectedTextColor="@color/orange"
-            app:tabIconTint="@color/orange"
             app:tabMode="fixed"
             android:elevation="10dp"
             android:background="@color/white"

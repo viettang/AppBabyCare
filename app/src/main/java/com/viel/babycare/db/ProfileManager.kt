@@ -20,6 +20,7 @@ class ProfileManager(ctx:Context){
             values.put(Const.COL_DAY, profile.dayOfBirth)
             values.put(Const.COL_MONTH, profile.monthOfBirth)
             values.put(Const.COL_YEAR, profile.yearOfBirth)
+            values.put(Const.COL_INOTATION,profile.inotation)
             db.insert(Const.TABLE_PROFILE, null, values)
         }else{
             deleteProfile()
@@ -30,6 +31,7 @@ class ProfileManager(ctx:Context){
             values.put(Const.COL_DAY, profile.dayOfBirth)
             values.put(Const.COL_MONTH, profile.monthOfBirth)
             values.put(Const.COL_YEAR, profile.yearOfBirth)
+            values.put(Const.COL_INOTATION,profile.inotation)
             db.insert(Const.TABLE_PROFILE, null, values)
         }
     }
@@ -50,6 +52,7 @@ class ProfileManager(ctx:Context){
             val colDayIndex = cursor.getColumnIndex(Const.COL_DAY)
             val colMothIndex = cursor.getColumnIndex(Const.COL_MONTH)
             val colYearIndex = cursor.getColumnIndex(Const.COL_YEAR)
+            val colInotationIndex = cursor.getColumnIndex(Const.COL_INOTATION)
             while (cursor.moveToNext()) {
                 val idPro = cursor.getInt(colIdProIndex)
                 val gender = cursor.getString(colGenderIndex)
@@ -57,8 +60,9 @@ class ProfileManager(ctx:Context){
                 val day = cursor.getInt(colDayIndex)
                 val moth = cursor.getInt(colMothIndex)
                 val year = cursor.getInt(colYearIndex)
+                val inotation = cursor.getString(colInotationIndex)
 
-                val profile = Profile(idPro, gender, name, day, moth, year)
+                val profile = Profile(idPro, gender, name, day, moth, year,inotation)
                 profiles.add(profile)
             }
         }

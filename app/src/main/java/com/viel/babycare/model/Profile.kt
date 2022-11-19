@@ -9,4 +9,5 @@ data class Profile(
     val dayOfBirth:Int,
     val monthOfBirth:Int,
     val yearOfBirth:Int,
+    val inotation: String
 ) : Serializable

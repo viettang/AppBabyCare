@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/spline_dialog"
+    android:minWidth="200dp"
+    android:minHeight="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
@@ -24,7 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="50dp"
-        android:text="You cannot create multiple alarm!"
+        android:text="Please chose a date!"
         android:textStyle="bold"
         android:textSize="25sp"
         android:gravity="center"

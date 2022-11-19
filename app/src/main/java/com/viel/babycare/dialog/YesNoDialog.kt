@@ -20,6 +20,7 @@ object YesNoDialog {
         yesNoDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         yesNoDialog.setCanceledOnTouchOutside(false)
         yesNoDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.attributes!!.windowAnimations = androidx.appcompat.R.style.Animation_AppCompat_DropDownUp
         yesNoDialog.setContentView(R.layout.dialog_yes_no)
         yesNoDialog.show()
 
