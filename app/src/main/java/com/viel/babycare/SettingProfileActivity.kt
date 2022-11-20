@@ -14,6 +14,7 @@ import com.viel.babycare.db.ProfileManager
 import com.viel.babycare.dialog.DateDialog
 import com.viel.babycare.dialog.DateDialogDigital
 import com.viel.babycare.dialog.WarningDialog
+import com.viel.babycare.fragments.HomeFragment
 import com.viel.babycare.model.DialogAction
 import com.viel.babycare.model.Profile
 
@@ -103,11 +104,12 @@ class SettingProfileActivity : AppCompatActivity(),OnButtonDateListener {
         binding.btnDelProfile.setOnClickListener {
             profileManager.deleteProfile()
             dialogManager.deleteAllDialog()
+            HomeFragment.dialogActions.clear()
 
+            finishAffinity()
             val intent:Intent = Intent(this,ScreenStart::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            finishAffinity()
         }
 
     }

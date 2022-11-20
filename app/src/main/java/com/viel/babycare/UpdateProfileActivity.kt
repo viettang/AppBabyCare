@@ -8,6 +8,8 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -20,6 +22,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
 import com.viel.babycare.databinding.ActivityUpdateProfileBinding
+import com.viel.babycare.dialog.WaitDialog
 import com.viel.babycare.progress.RequestHelper
 
 class UpdateProfileActivity : AppCompatActivity() {
@@ -51,6 +54,8 @@ class UpdateProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUpdateProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mUri = Uri.parse("android.resource://${packageName}/${R.drawable.ic_user}")
 
         val user = Firebase.auth.currentUser
         user?.let {
@@ -95,7 +100,10 @@ class UpdateProfileActivity : AppCompatActivity() {
                 Toast.makeText(this,"Please enter the blank infomation !!!",Toast.LENGTH_LONG).show()
             }else{
                 onClickUpdateProfile()
-                finish()
+                WaitDialog.waitDialog(this)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    finish()
+                },3000)
             }
         }
     }
@@ -103,6 +111,8 @@ class UpdateProfileActivity : AppCompatActivity() {
     private fun getPermissionsRequest() = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){
         if (RequestHelper.isAllPermissionsGranted(PERMISSIONS,this)){
             openGallery()
+        }else{
+            Toast.makeText(this,"You must accept permission to change avatar",Toast.LENGTH_LONG).show()
         }
     }
 
@@ -115,7 +125,6 @@ class UpdateProfileActivity : AppCompatActivity() {
 
     private fun onClickUpdateProfile() {
         val user = Firebase.auth.currentUser
-
         val profileUpdates = userProfileChangeRequest {
             displayName = binding.edtUsernameUpdate.text.toString()
             photoUri = Uri.parse(mUri.toString())

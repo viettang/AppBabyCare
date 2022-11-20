@@ -1,18 +1,24 @@
 package com.viel.babycare
 
-import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ProgressBar
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.viel.babycare.databinding.ActivityLoginBinding
 import com.viel.babycare.databinding.ActivitySignUpBinding
+import com.viel.babycare.db.DialogManager
+import com.viel.babycare.dialog.WaitDialog
+import com.viel.babycare.fragments.HomeFragment
+import com.viel.babycare.model.DialogAction
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -49,8 +55,10 @@ class SignUpActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, pass2)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        val user = auth.currentUser
-                        finish()
+                        WaitDialog.waitDialog(this)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                         finish()
+                        },3000)
                     } else {
                         Toast.makeText(this,"Sign Up fail",Toast.LENGTH_SHORT).show()
                     }

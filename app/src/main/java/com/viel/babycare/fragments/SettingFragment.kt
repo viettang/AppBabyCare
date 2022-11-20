@@ -76,8 +76,11 @@ class SettingFragment:Fragment() {
 
 
         binding.imgUser.setOnClickListener {
-            val intent = Intent(requireContext(),UpdateProfileActivity::class.java)
-            startActivity(intent)
+            val user = Firebase.auth.currentUser
+            user?.let {
+                val intent = Intent(requireContext(),UpdateProfileActivity::class.java)
+                startActivity(intent)
+            }
 
         }
 
@@ -87,6 +90,7 @@ class SettingFragment:Fragment() {
             Firebase.auth.signOut()
             val intent= Intent(context,ScreenStart::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            HomeFragment.dialogActions.clear()
             startActivity(intent)
         }
 
@@ -137,6 +141,7 @@ class SettingFragment:Fragment() {
         }
 
         binding.spnProfile.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -164,11 +169,7 @@ class SettingFragment:Fragment() {
 
     }
     private fun hideSignOut(user: FirebaseUser?) {
-        if (user == null){
-            binding.clSignOut.isVisible = false
-        }else{
-            binding.clSignOut.isVisible = true
-        }
+        binding.clSignOut.isVisible = user != null
     }
 
 }

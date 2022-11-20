@@ -49,6 +49,8 @@ open class MainActivity : AppCompatActivity(),OnButtonClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        WaitDialog.waitDialog(this)
+
         val ageWeek = cA.caculateAge(profileManager.getProfile()[0].dayOfBirth,profileManager.
         getProfile()[0].monthOfBirth,profileManager.getProfile()[0].yearOfBirth)
             ?.get(1)
@@ -150,6 +152,7 @@ open class MainActivity : AppCompatActivity(),OnButtonClickListener {
         val intent = Intent(this,AlarmReceiver::class.java)
         val position = dialogManager.getAlarmDialog().size-1
         intent.putExtra("note","${dialogManager.getAlarmDialog()[position].amount}")
+
         val setTime = dialogManager.getAlarmDialog()[position].time
 
         calendar[Calendar.DAY_OF_MONTH] = DateDialog.getDay1()
@@ -162,7 +165,6 @@ open class MainActivity : AppCompatActivity(),OnButtonClickListener {
         pendingIntent = PendingIntent.getBroadcast(this,position,intent,
             PendingIntent.FLAG_MUTABLE)
         alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,pendingIntent)
-        Log.d(TAG, "onButtonClick: xxkjjbJXHJAkjxhkahhajhjaxjja")
     }
 }
 

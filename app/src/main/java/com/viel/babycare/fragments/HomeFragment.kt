@@ -1,10 +1,16 @@
 package com.viel.babycare.fragments
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +19,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.viel.babycare.MainActivity
 import com.viel.babycare.R
 import com.viel.babycare.adapter.DialogActionAdapter
@@ -45,22 +58,22 @@ class HomeFragment:Fragment(),OnDialogItemClickListener{
 
     }
 
+    private lateinit var database: DatabaseReference
+
     @SuppressLint("NewApi")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = FragmentHomeBinding.inflate(inflater,container,false)
+        dialogManager = DialogManager(context as MainActivity)
+        dialogActions.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
         adapter = DialogActionAdapter(dialogActions,this, context as MainActivity)
         binding.rvMain.adapter = adapter
         binding.rvMain.layoutManager = LinearLayoutManager(requireContext(),
             RecyclerView.VERTICAL,false)
-        dialogManager = DialogManager(context as MainActivity)
-        if (dialogActions.size == 0) {
-            dialogActions.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
-            adapter.notifyDataSetChanged()
-        }
 
         listPhoto = getListPhotos() as ArrayList<Photo>
         photoAdapter = PhotoAdapter(listPhoto)
@@ -75,13 +88,39 @@ class HomeFragment:Fragment(),OnDialogItemClickListener{
             }
         })
 
+            synDataFirebase(adapter)
 
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        adapter.notifyDataSetChanged()
+
+    private fun synDataFirebase(adapter: DialogActionAdapter) {
+        val user = Firebase.auth.currentUser
+        user?.let {
+            val email = user.email
+            database = Firebase.database.getReference(email!!.replace(".",""))
+            database.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    dialogManager.deleteAlarmAcceptDialog("Alarm")
+                    dialogActions.clear()
+                    for (postSnapshot in dataSnapshot.children) {
+                        val dialogAction = postSnapshot.getValue(DialogAction::class.java)
+                        dialogAction?.let {
+                            dialogManager.addDialog(dialogAction)
+                        }
+                    }
+                    dialogActions.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
+                    adapter.notifyDataSetChanged()
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                }
+            })
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 
     private fun getListPhotos():List<Photo>{

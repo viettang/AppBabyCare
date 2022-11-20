@@ -15,4 +15,7 @@ interface NotificationDAO {
     @Query("SELECT * FROM notification")
     fun getAllNotification(): List<Notification>
 
+    @Query("SELECT * FROM notification WHERE idNo IN (:id)")
+    fun findAllById(id:Int):List<Notification>
+
 }

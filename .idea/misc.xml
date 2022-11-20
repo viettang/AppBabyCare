@@ -53,6 +53,8 @@
         <entry key="..\:/BabyCare/app/src/main/res/drawable/spline_recycleview.xml" value="0.1555" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/tab_background.xml" value="0.1385" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/temp.xml" value="0.1385" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/wait.xml" value="0.1" />
+        <entry key="..\:/BabyCare/app/src/main/res/drawable/wait_bg.xml" value="0.1345" />
         <entry key="..\:/BabyCare/app/src/main/res/drawable/weight.xml" value="0.1555" />
         <entry key="..\:/BabyCare/app/src/main/res/font/font_main.xml" value="0.2611111111111111" />
         <entry key="..\:/BabyCare/app/src/main/res/font/font_main1.xml" value="0.2611111111111111" />
@@ -84,6 +86,7 @@
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_temp.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_time.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_vaccine.xml" value="0.2421875" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_wait.xml" value="0.24114583333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_warning.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_weight.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_yes_no.xml" value="0.19786324786324785" />
