@@ -22,9 +22,6 @@ object WaitDialog:DialogFragment() {
         dialogWait.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialogWait.setContentView(R.layout.dialog_wait)
 
-        val imgWait = dialogWait.findViewById(R.id.img_wait) as ImageView
-        val animation = AnimationUtils.loadAnimation(context,R.anim.anim_refresh)
-        imgWait.startAnimation(animation)
         dialogWait.show()
 
         Handler(Looper.getMainLooper()).postDelayed({

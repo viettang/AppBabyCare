@@ -69,7 +69,9 @@ class HomeFragment:Fragment(),OnDialogItemClickListener{
 
         binding = FragmentHomeBinding.inflate(inflater,container,false)
         dialogManager = DialogManager(context as MainActivity)
-        dialogActions.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
+        if (dialogActions.isEmpty()){
+            dialogActions.addAll(dialogManager.getFinterDialog(DateDialog.getDate()))
+        }
         adapter = DialogActionAdapter(dialogActions,this, context as MainActivity)
         binding.rvMain.adapter = adapter
         binding.rvMain.layoutManager = LinearLayoutManager(requireContext(),

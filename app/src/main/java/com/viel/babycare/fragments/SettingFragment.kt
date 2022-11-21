@@ -31,6 +31,8 @@ import com.google.firebase.ktx.Firebase
 import com.viel.babycare.*
 import com.viel.babycare.databinding.FragmentSettingBinding
 import com.viel.babycare.db.ProfileManager
+import com.viel.babycare.dialog.FeedBackDialog
+import com.viel.babycare.dialog.RateDialog
 import com.viel.babycare.model.Profile
 import com.viel.babycare.progress.CaculateAge
 import com.viel.babycare.progress.RequestHelper
@@ -92,6 +94,14 @@ class SettingFragment:Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             HomeFragment.dialogActions.clear()
             startActivity(intent)
+        }
+
+        binding.clRateUs.setOnClickListener {
+            RateDialog.rateDialog(requireContext())
+        }
+
+        binding.clFeedBack.setOnClickListener {
+            FeedBackDialog.feedBackDialog(requireContext())
         }
 
         return binding.root

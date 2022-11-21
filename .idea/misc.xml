@@ -74,12 +74,14 @@
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_date.xml" value="0.2" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_date_digital.xml" value="0.24114583333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_diaper.xml" value="0.2421875" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_feed_back.xml" value="0.24114583333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_fill.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_filldoc.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_fillin.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_height.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_medicine.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_pee.xml" value="0.22146739130434784" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_rate.xml" value="0.24114583333333334" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_remind.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_sleep.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/dialog_solids.xml" value="0.22826086956521738" />
@@ -93,7 +95,7 @@
         <entry key="..\:/BabyCare/app/src/main/res/layout/flash_screen.xml" value="0.2421875" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_analysis.xml" value="0.22826086956521738" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_home.xml" value="0.22826086956521738" />
-        <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_setting.xml" value="0.19786324786324785" />
+        <entry key="..\:/BabyCare/app/src/main/res/layout/fragment_setting.xml" value="0.176" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/hearder_main.xml" value="0.16700819672131148" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/item_dialog_action.xml" value="0.2" />
         <entry key="..\:/BabyCare/app/src/main/res/layout/item_notification.xml" value="0.24114583333333334" />
